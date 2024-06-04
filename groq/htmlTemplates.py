@@ -29,7 +29,7 @@ css = '''
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://raw.githubusercontent.com/yYorky/Langchain-Project/main/static/Professor.webp" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="https://github.com/yYorky/Pokemon-Game-RAG-Chatbot/blob/main/static/Professor.webp" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -38,7 +38,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="https://raw.githubusercontent.com/yYorky/Langchain-Project/main/static/Trainer.webp" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="https://github.com/yYorky/Pokemon-Game-RAG-Chatbot/blob/main/static/Trainer.webp" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>

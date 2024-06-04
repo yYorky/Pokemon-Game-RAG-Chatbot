@@ -55,24 +55,7 @@ We explore different embeddings, LLM types, and prompt testing to optimize the c
 - Faithfulness measures how well the generated answer aligns with the information provided in the retrieved context. It ensures that the response remains consistent with the facts presented in the context.
 - The answer is scaled to (0,1) range. Higher the better.
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mtext>Faithfulness score</mtext>
-  <mo>=</mo>
-  <mrow data-mjx-texclass="ORD">
-    <mfrac>
-      <mrow>
-        <mo stretchy="false">|</mo>
-        <mtext>Number of claims in the generated answer that can be inferred from given context</mtext>
-        <mo stretchy="false">|</mo>
-      </mrow>
-      <mrow>
-        <mo stretchy="false">|</mo>
-        <mtext>Total number of claims in the generated answer</mtext>
-        <mo stretchy="false">|</mo>
-      </mrow>
-    </mfrac>
-  </mrow>
-</math>
+$\text{Faithfulness score} = {|\text{Number of claims in the generated answer that can be inferred from given context}| \over |\text{Total number of claims in the generated answer}|}$
 
 > Question: Where and when was Einstein born?
 > - Context: Albert Einstein (born 14 March 1879) was a German-born theoretical physicist, widely held to be one of the greatest and most influential scientists of all time
@@ -81,101 +64,10 @@ We explore different embeddings, LLM types, and prompt testing to optimize the c
 
 ### Answer Relevancy:
 - Answer Relevancy assesses how pertinent the generated answer is to the given prompt. It measures the alignment between the answer and the original question. Lower scores are assigned to incomplete or irrelevant answers, while higher scores indicate better relevancy.
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mtext>answer relevancy</mtext>
-  <mo>=</mo>
-  <mfrac>
-    <mn>1</mn>
-    <mi>N</mi>
-  </mfrac>
-  <munderover>
-    <mo data-mjx-texclass="OP">&#x2211;</mo>
-    <mrow data-mjx-texclass="ORD">
-      <mi>i</mi>
-      <mo>=</mo>
-      <mn>1</mn>
-    </mrow>
-    <mrow data-mjx-texclass="ORD">
-      <mi>N</mi>
-    </mrow>
-  </munderover>
-  <mi>c</mi>
-  <mi>o</mi>
-  <mi>s</mi>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>E</mi>
-    <mrow data-mjx-texclass="ORD">
-      <msub>
-        <mi>g</mi>
-        <mi>i</mi>
-      </msub>
-    </mrow>
-  </msub>
-  <mo>,</mo>
-  <msub>
-    <mi>E</mi>
-    <mi>o</mi>
-  </msub>
-  <mo stretchy="false">)</mo>
-</math>
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mtext>answer relevancy</mtext>
-  <mo>=</mo>
-  <mfrac>
-    <mn>1</mn>
-    <mi>N</mi>
-  </mfrac>
-  <munderover>
-    <mo data-mjx-texclass="OP">&#x2211;</mo>
-    <mrow data-mjx-texclass="ORD">
-      <mi>i</mi>
-      <mo>=</mo>
-      <mn>1</mn>
-    </mrow>
-    <mrow data-mjx-texclass="ORD">
-      <mi>N</mi>
-    </mrow>
-  </munderover>
-  <mfrac>
-    <mrow>
-      <msub>
-        <mi>E</mi>
-        <mrow data-mjx-texclass="ORD">
-          <msub>
-            <mi>g</mi>
-            <mi>i</mi>
-          </msub>
-        </mrow>
-      </msub>
-      <mo>&#x22C5;</mo>
-      <msub>
-        <mi>E</mi>
-        <mi>o</mi>
-      </msub>
-    </mrow>
-    <mrow>
-      <mo data-mjx-texclass="ORD" fence="false" stretchy="false">&#x2016;</mo>
-      <msub>
-        <mi>E</mi>
-        <mrow data-mjx-texclass="ORD">
-          <msub>
-            <mi>g</mi>
-            <mi>i</mi>
-          </msub>
-        </mrow>
-      </msub>
-      <mo data-mjx-texclass="ORD" fence="false" stretchy="false">&#x2016;</mo>
-      <mo data-mjx-texclass="ORD" fence="false" stretchy="false">&#x2016;</mo>
-      <msub>
-        <mi>E</mi>
-        <mi>o</mi>
-      </msub>
-      <mo data-mjx-texclass="ORD" fence="false" stretchy="false">&#x2016;</mo>
-    </mrow>
-  </mfrac>
-</math>
+$\text{answer relevancy} = \frac{1}{N} \sum_{i=1}^{N} cos(E_{g_i}, E_o)$
+
+$\text{answer relevancy} = \frac{1}{N} \sum_{i=1}^{N} \frac{E_{g_i} \cdot E_o}{\|E_{g_i}\|\|E_o\|}$
 
 Where:
 
@@ -187,56 +79,9 @@ Where:
 - Context Precision evaluates whether all relevant items (chunks) from the ground truth appear at higher ranks in the retrieved contexts. Ideally, relevant chunks should be ranked at the top. It measures how well the system prioritizes relevant context.
 - The resulting value ranges between 0 and 1, where higher scores indicate better precision.
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mtext>Context Precision@K</mtext>
-  <mo>=</mo>
-  <mfrac>
-    <mrow>
-      <munderover>
-        <mo data-mjx-texclass="OP">&#x2211;</mo>
-        <mrow data-mjx-texclass="ORD">
-          <mi>k</mi>
-          <mo>=</mo>
-          <mn>1</mn>
-        </mrow>
-        <mrow data-mjx-texclass="ORD">
-          <mi>K</mi>
-        </mrow>
-      </munderover>
-      <mrow data-mjx-texclass="INNER">
-        <mo data-mjx-texclass="OPEN">(</mo>
-        <mtext>Precision@k</mtext>
-        <mo>&#xD7;</mo>
-        <msub>
-          <mi>v</mi>
-          <mi>k</mi>
-        </msub>
-        <mo data-mjx-texclass="CLOSE">)</mo>
-      </mrow>
-    </mrow>
-    <mrow>
-      <mtext>Total number of relevant items in the top&#xA0;</mtext>
-      <mi>K</mi>
-      <mtext>&#xA0;results</mtext>
-    </mrow>
-  </mfrac>
-</math>
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mtext>Precision@k</mtext>
-  <mo>=</mo>
-  <mrow data-mjx-texclass="ORD">
-    <mfrac>
-      <mtext>true positives@k</mtext>
-      <mrow>
-        <mo stretchy="false">(</mo>
-        <mtext>true positives@k</mtext>
-        <mo>+</mo>
-        <mtext>false positives@k</mtext>
-        <mo stretchy="false">)</mo>
-      </mrow>
-    </mfrac>
-  </mrow>
-</math>
+$\text{Context Precision@K} = \frac{\sum_{k=1}^{K} \left( \text{Precision@k} \times v_k \right)}{\text{Total number of relevant items in the top } K \text{ results}}$
+
+$\text{Precision@k} = {\text{true positives@k} \over  (\text{true positives@k} + \text{false positives@k})}$
 
 Where $K$ is the total number of chunks in contexts and $v_k \in \{0, 1\}$ is the relevance indicator at rank $k$.
 
@@ -244,24 +89,8 @@ Where $K$ is the total number of chunks in contexts and $v_k \in \{0, 1\}$ is th
 - This metric gauges the relevancy of the retrieved context, calculated based on both the question and contexts. The values fall within the range of (0, 1), with higher values indicating better relevancy.
 - Ideally, the retrieved context should exclusively contain essential information to address the provided query. To compute this, we initially estimate the value of 
  by identifying sentences within the retrieved context that are relevant for answering the given question. The final score is determined by the following formula:
- <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mtext>context relevancy</mtext>
-  <mo>=</mo>
-  <mrow data-mjx-texclass="ORD">
-    <mfrac>
-      <mrow>
-        <mo stretchy="false">|</mo>
-        <mi>S</mi>
-        <mo stretchy="false">|</mo>
-      </mrow>
-      <mrow>
-        <mo stretchy="false">|</mo>
-        <mtext>Total number of sentences in retrieved context</mtext>
-        <mo stretchy="false">|</mo>
-      </mrow>
-    </mfrac>
-  </mrow>
-</math>
+
+$\text{context relevancy} = {|S| \over |\text{Total number of sentences in retrieved context}|}$
 
 > Question: What is the capital of France?
 > - High context relevancy: France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. Paris, its capital, is famed for its fashion houses, classical art museums including the Louvre and monuments like the Eiffel Tower.
@@ -270,56 +99,19 @@ Where $K$ is the total number of chunks in contexts and $v_k \in \{0, 1\}$ is th
 ### Context Recall:
 - Context recall measures the extent to which the retrieved context aligns with the annotated answer, treated as the ground truth. It is computed based on the ground truth and the retrieved context, and the values range between 0 and 1, with higher values indicating better performance. The formula for calculating context recall is as follows:
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mtext>context recall</mtext>
-  <mo>=</mo>
-  <mrow data-mjx-texclass="ORD">
-    <mfrac>
-      <mrow>
-        <mo stretchy="false">|</mo>
-        <mtext>GT sentences that can be attributed to context</mtext>
-        <mo stretchy="false">|</mo>
-      </mrow>
-      <mrow>
-        <mo stretchy="false">|</mo>
-        <mtext>Number of sentences in GT</mtext>
-        <mo stretchy="false">|</mo>
-      </mrow>
-    </mfrac>
-  </mrow>
-</math>
+$\text{context recall} = {|\text{GT sentences that can be attributed to context}| \over |\text{Number of sentences in GT}|}$
 
 >Question: Where is France and what is it’s capital?
 > - Ground truth: France is in Western Europe and its capital is Paris.
 > - High context recall: France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. Paris, its capital, is famed for its fashion houses, classical art museums including the Louvre and monuments like the Eiffel Tower.
 > - Low context recall: France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. The country is also renowned for its wines and sophisticated cuisine. Lascaux’s ancient cave drawings, Lyon’s Roman theater and the vast Palace of Versailles attest to its rich history.
 
-### Context Entity Recall:
+### Context Entities Recall:
 - Context Recall measures the proportion of relevant entities (e.g., facts, names, locations) that are correctly retrieved from the ground truth context. It quantifies how well the system recalls entities from the retrieved context.
 - To compute this metric, we use two sets, $GE$ and $CE$, as set of entities present in ground_truths and set of entities present in contexts respectively. 
 - We then take the number of elements in intersection of these sets and divide it by the number of elements present in the $GE$, given by the formula:
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mtext>context entity recall</mtext>
-  <mo>=</mo>
-  <mfrac>
-    <mrow>
-      <mo stretchy="false">|</mo>
-      <mi>C</mi>
-      <mi>E</mi>
-      <mo>&#x2229;</mo>
-      <mi>G</mi>
-      <mi>E</mi>
-      <mo stretchy="false">|</mo>
-    </mrow>
-    <mrow>
-      <mo stretchy="false">|</mo>
-      <mi>G</mi>
-      <mi>E</mi>
-      <mo stretchy="false">|</mo>
-    </mrow>
-  </mfrac>
-</math>
+$\text{context entity recall} = \frac{| CE \cap GE |}{| GE |}$
 
 > - Ground truth: The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in the Indian city of Agra. It was commissioned in 1631 by the Mughal emperor Shah Jahan to house the tomb of his favorite wife, Mumtaz Mahal.
 > - High entity recall context: The Taj Mahal is a symbol of love and architectural marvel located in Agra, India. It was built by the Mughal emperor Shah Jahan in memory of his beloved wife, Mumtaz Mahal. The structure is renowned for its intricate marble work and beautiful gardens surrounding it.
