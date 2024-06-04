@@ -31,7 +31,6 @@ PyAPI_FUNC(void) _Py_NO_RETURN Py_Exit(int);
 
 /* Bootstrap __main__ (defined in Modules/main.c) */
 PyAPI_FUNC(int) Py_Main(int argc, wchar_t **argv);
-
 PyAPI_FUNC(int) Py_BytesMain(int argc, char **argv);
 
 /* In pathconfig.c */
@@ -52,7 +51,6 @@ int _Py_CheckPython3(void);
 #endif
 
 /* In their own files */
-PyAPI_FUNC(const char *) Anaconda_GetVersion(void);
 PyAPI_FUNC(const char *) Py_GetVersion(void);
 PyAPI_FUNC(const char *) Py_GetPlatform(void);
 PyAPI_FUNC(const char *) Py_GetCopyright(void);
