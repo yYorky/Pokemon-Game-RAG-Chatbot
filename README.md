@@ -51,7 +51,7 @@ We explore different embeddings, LLM types, and prompt testing to optimize the c
  
 ![](https://docs.ragas.io/en/latest/_static/imgs/component-wise-metrics.png)
 
-### Faithfulness:
+### Faithfulness: (Generation)
 - Faithfulness measures how well the generated answer aligns with the information provided in the retrieved context. It ensures that the response remains consistent with the facts presented in the context.
 - The answer is scaled to (0,1) range. Higher the better.
 
@@ -62,7 +62,7 @@ $\text{Faithfulness score} = {|\text{Number of claims in the generated answer th
 > - High faithfulness answer: Einstein was born in Germany on 14th March 1879.
 > - Low faithfulness answer: Einstein was born in Germany on 20th March 1879.
 
-### Answer Relevancy:
+### Answer Relevancy: (Generation)
 - Answer Relevancy assesses how pertinent the generated answer is to the given prompt. It measures the alignment between the answer and the original question. Lower scores are assigned to incomplete or irrelevant answers, while higher scores indicate better relevancy.
 
 $\text{answer relevancy} = \frac{1}{N} \sum_{i=1}^{N} cos(E_{g_i}, E_o)$
@@ -75,7 +75,7 @@ Where:
 - $E_{o}$ is the embedding of the original question.
 - $N$ is the number of generated questions, which is 3 default.
 
-### Context Precision:
+### Context Precision: (Retreival)
 - Context Precision evaluates whether all relevant items (chunks) from the ground truth appear at higher ranks in the retrieved contexts. Ideally, relevant chunks should be ranked at the top. It measures how well the system prioritizes relevant context.
 - The resulting value ranges between 0 and 1, where higher scores indicate better precision.
 
@@ -85,7 +85,7 @@ $\text{Precision@k} = {\text{true positives@k} \over  (\text{true positives@k} +
 
 Where $K$ is the total number of chunks in contexts and $v_k \in \{0, 1\}$ is the relevance indicator at rank $k$.
 
-### Context Relevancy:
+### Context Relevancy: (Retreival)
 - This metric gauges the relevancy of the retrieved context, calculated based on both the question and contexts. The values fall within the range of (0, 1), with higher values indicating better relevancy.
 - Ideally, the retrieved context should exclusively contain essential information to address the provided query. To compute this, we initially estimate the value of 
  by identifying sentences within the retrieved context that are relevant for answering the given question. The final score is determined by the following formula:
@@ -96,7 +96,7 @@ $\text{context relevancy} = {|S| \over |\text{Total number of sentences in retri
 > - High context relevancy: France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. Paris, its capital, is famed for its fashion houses, classical art museums including the Louvre and monuments like the Eiffel Tower.
 > - Low context relevancy: France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. Paris, its capital, is famed for its fashion houses, classical art museums including the Louvre and monuments like the Eiffel Tower. The country is also renowned for its wines and sophisticated cuisine. Lascaux’s ancient cave drawings, Lyon’s Roman theater and the vast Palace of Versailles attest to its rich history.
 
-### Context Recall:
+### Context Recall: (Retreival)
 - Context recall measures the extent to which the retrieved context aligns with the annotated answer, treated as the ground truth. It is computed based on the ground truth and the retrieved context, and the values range between 0 and 1, with higher values indicating better performance. The formula for calculating context recall is as follows:
 
 $\text{context recall} = {|\text{GT sentences that can be attributed to context}| \over |\text{Number of sentences in GT}|}$
@@ -106,7 +106,7 @@ $\text{context recall} = {|\text{GT sentences that can be attributed to context}
 > - High context recall: France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. Paris, its capital, is famed for its fashion houses, classical art museums including the Louvre and monuments like the Eiffel Tower.
 > - Low context recall: France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. The country is also renowned for its wines and sophisticated cuisine. Lascaux’s ancient cave drawings, Lyon’s Roman theater and the vast Palace of Versailles attest to its rich history.
 
-### Context Entities Recall:
+### Context Entities Recall: (Retreival)
 - Context Recall measures the proportion of relevant entities (e.g., facts, names, locations) that are correctly retrieved from the ground truth context. It quantifies how well the system recalls entities from the retrieved context.
 - To compute this metric, we use two sets, $GE$ and $CE$, as set of entities present in ground_truths and set of entities present in contexts respectively. 
 - We then take the number of elements in intersection of these sets and divide it by the number of elements present in the $GE$, given by the formula:
@@ -117,7 +117,7 @@ $\text{context entity recall} = \frac{| CE \cap GE |}{| GE |}$
 > - High entity recall context: The Taj Mahal is a symbol of love and architectural marvel located in Agra, India. It was built by the Mughal emperor Shah Jahan in memory of his beloved wife, Mumtaz Mahal. The structure is renowned for its intricate marble work and beautiful gardens surrounding it.
 > - Low entity recall context: The Taj Mahal is an iconic monument in India. It is a UNESCO World Heritage Site and attracts millions of visitors annually. The intricate carvings and stunning architecture make it a must-visit destination.
 
-### Answer semantic Similarity:
+### Answer semantic Similarity: (End to End)
 - The concept of Answer Semantic Similarity pertains to the assessment of the semantic resemblance between the generated answer and the ground truth. 
 - This evaluation is based on the ground truth and the answer, with values falling within the range of 0 to 1. A higher score signifies a better alignment between the generated answer and the ground truth.
 - Measuring the semantic similarity between answers can offer valuable insights into the quality of the generated response. This evaluation utilizes a cross-encoder model to calculate the semantic similarity score.
@@ -126,7 +126,7 @@ $\text{context entity recall} = \frac{| CE \cap GE |}{| GE |}$
 > - High similarity answer: Einstein’s groundbreaking theory of relativity transformed our comprehension of the cosmos.
 > - Low similarity answer: Isaac Newton’s laws of motion greatly influenced classical physics.
 
-### Answer Correctness:
+### Answer Correctness: (End to End)
 - Explain how accurate the generated answer is assessed based on the ground truth.
 - This evaluation relies on the ground truth and the answer, with scores ranging from 0 to 1. A higher score indicates a closer alignment between the generated answer and the ground truth, signifying better correctness.
 - Answer correctness encompasses two critical aspects: semantic similarity between the generated answer and the ground truth, as well as factual similarity. These aspects are combined using a weighted scheme to formulate the answer correctness score. Users also have the option to employ a ‘threshold’ value to round the resulting score to binary, if desired.
