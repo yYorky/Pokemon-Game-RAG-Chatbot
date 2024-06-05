@@ -169,8 +169,7 @@ $\text{context entity recall} = \frac{| CE \cap GE |}{| GE |}$
 - Ask questions related to Pokemon Scarlet & Violet and view the response
 - Click on document similarity search to view the retreived chunks
 
-![](static\model_base.png)
-
+<img src="static\model_base.png"> 
 
 **Using `model_eval.py`**
 - Upload the evaluation dataset in the sidebar.
@@ -179,7 +178,7 @@ $\text{context entity recall} = \frac{| CE \cap GE |}{| GE |}$
 - Continue asking questions as necessary, if there are questions asked that are not in the evaluation dataset it will skip the RAGAS evaluation
 - Click on Save Evaluation Results and Download results to review
 
-![](static\model_eval.png)
+<img src="static\model_eval.png"> 
 
 ## References and Acknowledgment
 - Wang, B., Gao, Z., & Shidujaman, M. (2023). Meaningful place: A phenomenological approach to the design of spatial experience in open-world games. Journal of Game Design, 10(2), 45-621. https://doi.org/10.1177/15554120231171290 
