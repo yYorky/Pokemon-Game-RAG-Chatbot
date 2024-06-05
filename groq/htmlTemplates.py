@@ -29,7 +29,7 @@ css = '''
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="static\Professor.webp" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="https://pbs.twimg.com/profile_images/1337888724303089672/ZcA265Fg_400x400.jpg" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -38,7 +38,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="static\Trainer.webp" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLep5wntqmBrA2Q8mnRXkn3uiYyaPiGYC_qw&s" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
