@@ -29,7 +29,7 @@ css = '''
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/02/Professor-OAK.jpg" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="static\Professor.webp" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -38,7 +38,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2021/05/pokemon-ash-pikachu.jpg" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="static\Trainer.webp" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
