@@ -186,4 +186,5 @@ $\text{context entity recall} = \frac{| CE \cap GE |}{| GE |}$
 - Ragas Documentation (n.d.). Retrieved from https://docs.ragas.io/en/latest/concepts/metrics/index.html
 - Github by Krishnaik06. (n.d.). Updated Langchain. Retrieved from https://github.com/krishnaik06/Updated-Langchain
 - Guthub by Alejandro-ao. (n.d.). Ask Multiple PDFs. Retrieved from https://github.com/alejandro-ao/ask-multiple-pdfs
+- (reddit)Brittlebear (2023) Pokemon Scarlet And Violet Walkthrough. Retreived from https://docs.google.com/document/d/1xL1NNZnKRabyl93BewLzcZkcvmDJj2612K0Ih10hqXQ/edit#heading=h.82hsajnz9z9b
 
