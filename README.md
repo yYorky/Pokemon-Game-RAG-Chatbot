@@ -43,6 +43,7 @@ We explore different embeddings, LLM types, and prompt testing to optimize the c
 - Answer Generation: Using this prompt, the LLM generates a specific answer (e.g., “The new Pokemon Scarlet and Pokemon Violet starters are Sprigatito, Fuecoco, and Quaxly,”).
 
 ## Evaluation Metrics (RAGAS)
+![](https://raw.githubusercontent.com/deepset-ai/haystack-integrations/main/logos/ragas.png)
 
  RAGAS evaluation framework is designed to assess and quantify the performance of Retrieval-Augmented Generation (RAG) pipelines. The ragas score consist of these two components:
 
