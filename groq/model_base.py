@@ -80,8 +80,8 @@ st.session_state.embedding_choice = st.sidebar.selectbox(
     key='embedding_choice_main'  # Unique key for the selectbox in the main sidebar
 )
 st.session_state.conversational_memory_length = st.sidebar.slider('Conversational memory length:', 0, 10, value=0)
-st.session_state.chunk_size = st.sidebar.slider('Chunk size:', 1000, 8000, value=4000, step=500)
-st.session_state.chunk_overlap = st.sidebar.slider('Chunk overlap:', 0, 1000, value=500, step=100)
+st.session_state.chunk_size = st.sidebar.slider('Chunk size:', 1000, 8000, value=2000, step=500)
+st.session_state.chunk_overlap = st.sidebar.slider('Chunk overlap:', 0, 1000, value=200, step=100)
 
 # Add a text area for the prompt
 prompt = st.sidebar.text_area("Enter a prompt for the LLM:", key="prompt")
