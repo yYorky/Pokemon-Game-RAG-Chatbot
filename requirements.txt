@@ -25,3 +25,4 @@ google-cloud-aiplatform>=1.38
 langchain_google_genai
 ragas
 chardet
+# langchain_google_vertexai

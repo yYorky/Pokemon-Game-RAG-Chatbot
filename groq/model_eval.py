@@ -13,6 +13,8 @@ from langchain_groq import ChatGroq
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+# from langchain_community.llms import Ollama
+# from langchain_google_vertexai import ChatVertexAI
 from langchain.chains.conversation.memory import ConversationBufferMemory
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains import ConversationalRetrievalChain
@@ -240,7 +242,16 @@ def handle_userinput():
                 'answer': [ai_response],
                 'contexts': context_texts,
             })
-            evaluation_result = evaluate(evaluation_data, metrics=metrics)
+
+            # langchain_llm = ChatVertexAI(model="gemini-pro")
+            # langchain_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+
+            
+            evaluation_result = evaluate(evaluation_data, 
+                                         metrics=metrics,
+                                        #  llm=langchain_llm, 
+                                        #  embeddings=langchain_embeddings
+                                         )
             
             # Store evaluation result
             result_entry = {
