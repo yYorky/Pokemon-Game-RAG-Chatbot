@@ -29,7 +29,7 @@ css = '''
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://github.com/yYorky/Pokemon-Game-RAG-Chatbot/blob/main/static/Professor_ChatGroq_cropped.jpg" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="https://github.com/yYorky/Pokemon-Game-RAG-Chatbot/blob/main/static/Professor_ChatGroq_cropped.jpg?raw=true" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -38,7 +38,7 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="https://github.com/yYorky/Pokemon-Game-RAG-Chatbot/blob/main/static/Trainer_cropped.jpg" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
+        <img src="https://github.com/yYorky/Pokemon-Game-RAG-Chatbot/blob/main/static/Trainer_cropped.jpg?raw=true" style="max-height: 100px; max-width: 100px; border-radius: 50%; object-fit: cover;">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
